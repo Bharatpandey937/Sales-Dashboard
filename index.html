@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sim Card Sales Dashboar</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ctext x='0' y='14' font-size='16'%3ED%3C/text%3E%3C/svg%3E">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="dashboard-shell">
+        <header class="page-header">
+            <div class="brand-area">
+                <div class="brand-mark" aria-hidden="true">
+                    <svg viewBox="0 0 64 64" role="img" aria-label="UniC Sim Card Sales Dashboard logo">
+                        <path d="M12 46L25 32L35 39L52 18" fill="none" stroke="#237a8a" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"></path>
+                        <circle cx="12" cy="46" r="4" fill="#ef6c45"></circle>
+                        <circle cx="25" cy="32" r="4" fill="#ef6c45"></circle>
+                        <circle cx="35" cy="39" r="4" fill="#ef6c45"></circle>
+                        <circle cx="52" cy="18" r="4" fill="#ef6c45"></circle>
+                    </svg>
+                </div>
+                <div>
+                    <h1>Sales Dashboard</h1>
+                </div>
+            </div>
+
+            <div class="header-actions">
+                <div class="filter-bar">
+                    <label class="filter" for="currentdate">Date</label>
+                    <input type="date" id="currentdate" class="current_date" onchange="loadDashboard()">
+                </div>
+                <div class="control-group">
+                    <button id="themeToggle" class="theme-toggle" type="button" aria-label="Toggle theme">
+                        <span class="theme-icon">🌙</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <section class="kpi-grid">
+            <div class="kpi_card featured" id="today_performance">
+                <p class="card-title">Today performance</p>
+                <span id="today_orders" class="today_orders"></span>
+                <span class="card-label">Orders</span>
+                <span id="today_revenue" class="card-value"></span>
+                <span class="card-label">Revenue</span>
+            </div>
+            <div class="kpi_card">
+                <p class="card-title">Current month</p>
+                <span id="monthly_orders" class="monthly_orders"></span>
+                <span class="card-label">Orders</span>
+                <span id="monthly_revenue" class="card-value"></span>
+                <span class="card-label">Revenue</span>
+            </div>
+            <div class="kpi_card">
+                <p class="card-title">Previous month (same day)</p>
+                <span id="previous_month_same_day_orders" class="previous_month_same_day_orders"></span>
+                <span class="card-label">Orders</span>
+                <span id="previous_month_same_day_revenue" class="card-value"></span>
+                <span class="card-label">Revenue</span>
+            </div>
+            <div class="kpi_card">
+                <p class="card-title">Previous month</p>
+                <span id="previous_month_orders" class="previous_month_orders"></span>
+                <span class="card-label">Orders</span>
+                <span id="previous_month_revenue" class="card-value"></span>
+                <span class="card-label">Revenue</span>
+            </div>
+        </section>
+
+        <section class="content-grid">
+            <div class="panel emp_data">
+                <div class="panel-heading">
+                    <span>Daily leaderboard</span>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Emp Name</th>
+                            <th>Today Sales</th>
+                            <th>Today Revenue</th>
+                            <th>Monthly Sales</th>
+                            <th>Monthly Revenue</th>
+                        </tr>
+                    </thead>
+                    <tbody id="emp_data"></tbody>
+                </table>
+            </div>
+
+            <div class="panel summary_graph">
+                <div class="panel-heading">
+                    <span>Daily summary graph</span>
+                </div>
+                <canvas id="daily_summary_graph"></canvas>
+            </div>
+            <div class="panel summary_graph">
+                <div class="panel-heading">
+                    <span>Monthly summary graph</span>
+                </div>
+                <canvas id="monthly_summary_graph"></canvas>
+            </div>
+        </section>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script_supabase.js"></script>
+</body>
+</html>
